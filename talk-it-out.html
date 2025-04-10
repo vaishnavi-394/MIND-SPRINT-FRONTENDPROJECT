@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood-Based Self Care</title>
+  <style>
+    /* 🎥 Background Video */
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.5);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .container {
+      background-color: rgba(15, 15, 30, 0.85);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      text-align: center;
+      width: 90%;
+      max-width: 600px;
+      position: relative;
+      overflow: hidden;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    .container::before {
+      content: "🌸🌼🌷✨💖🌞🌻🏅🎗🏵🎧🎨🎯🌙⭐✨💤";
+      position: absolute;
+      font-size: 80px;
+      opacity: 0.3;
+      animation: floatEmoji 20s linear infinite;
+      top: -20%;
+      left: -10%;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    @keyframes floatEmoji {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(300px, 300px) rotate(360deg); }
+    }
+
+    .container > * {
+      position: relative;
+      z-index: 1;
+    }
+    .navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(90deg, #00c6ff, #051b35);
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 114, 255, 0.3);
+  z-index: 999;
+  gap: 15px;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, background 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #e0f7fa;
+}
+@media screen and (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 10px;
+    gap: 8px;
+    right: 10px;
+    top: 10px;
+  }
+
+  .navbar a {
+    font-size: 0.9rem;
+  }
+}
+
+
+    h1 {
+      color: #ddd;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      width: 80%;
+      border: 2px solid #444;
+      background-color: #1c1c2b;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #2c3e50;
+      color:#fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border: 2px solid rgb(37, 75, 99);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .suggestion-box {
+      margin-top: 25px;
+      background-color: rgba(25, 25, 40, 0.9);
+      border: 2px dashed #555;
+      border-radius: 15px;
+      padding: 20px;
+      animation: popUp 0.8s ease forwards;
+    }
+
+    .suggestion {
+      font-size: 18px;
+      color: #ccc;
+    }
+
+    @keyframes popUp {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔮 Background Video -->
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="videos/219969.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="navbar">
+    <a href="MS.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  
+
+  <div class="container">
+    <h1>"Your mood matters – write it down.😌 it’s a safe space 🌈"</h1>
+    <input type="text" id="moodInput" placeholder="How’s your heart feeling 💬">
+    <br>
+    <button id="moodButton" onclick="giveSuggestion()">Reflect ✨</button>
+  
+    <div class="suggestion-box" id="suggestionBox" style="display: none;">
+      <div class="suggestion" id="suggestionText"></div>
+    </div>
+  
+    <!-- 📝 Journal Mode Starts Here -->
+    <br>
+    <button onclick="toggleJournal()">Switch to Journal Mode 📓</button>
+    <textarea id="journalArea" placeholder="Write your thoughts freely here..." style="display:none; margin-top:20px; width: 90%; height: 150px; padding: 12px; font-size: 16px; border-radius: 10px; border: 2px solid #444; background-color: #1c1c2b; color: #fff;"></textarea>
+    <button id="saveJournalBtn" onclick="saveJournal()" style="display:none; margin-top: 10px;">Save Entry 💾</button>
+  </div>
+  
+
+  <script>
+    const suggestions = {
+      happy: "😊 That's wonderful! Keep the energy going by dancing to your favorite song! 💃🕺",
+      sad: "😔 It's okay to feel sad. Try journaling 📓 or taking a walk in nature 🌿, Try our talk-it-out activity😌.",
+      anxious: "😰 Take a deep breath. A short meditation 🧘‍♀ or some gentle yoga might help.",
+      angry: "😡 Try some breathing exercises 🌬 or go for a brisk walk 🚶‍♂.",
+      tired: "😴 Get some rest or take a short nap 🛌. Your body needs it!",
+      stressed: "😓 Listen to calming music 🎵 or take a warm bath 🛁 to relax."
+    };
+
+    const buttonLabels = {
+      happy: "Celebrate 🎉",
+      sad: "Soothe 💗",
+      anxious: "Calm Me 🌿",
+      angry: "Ease Tension 😌",
+      tired: "Recharge ⚡",
+      stressed: "Unwind 🧘",
+      default: "Reflect ✨"
+    };
+
+    function giveSuggestion() {
+      const moodInput = document.getElementById("moodInput").value.toLowerCase();
+      let suggestion = "✨ Try expressing your feelings through art 🎨 or writing ✍.";
+      let label = buttonLabels.default;
+
+      for (const keyword in suggestions) {
+        if (moodInput.includes(keyword)) {
+          suggestion = suggestions[keyword];
+          label = buttonLabels[keyword];
+          break;
+        }
+      }
+
+      document.getElementById("suggestionText").innerText = suggestion;
+      document.getElementById("suggestionBox").style.display = "block";
+      document.getElementById("moodButton").innerText = label;
+    }
+
+    function toggleJournal() {
+  const journalArea = document.getElementById("journalArea");
+  const saveBtn = document.getElementById("saveJournalBtn");
+  const isVisible = journalArea.style.display === "block";
+
+  journalArea.style.display = isVisible ? "none" : "block";
+  saveBtn.style.display = isVisible ? "none" : "inline-block";
+}
+
+function saveJournal() {
+  const journalEntry = document.getElementById("journalArea").value.trim();
+  if (journalEntry) {
+    const date = new Date().toLocaleString();
+    localStorage.setItem(`journal-${date}`, journalEntry);
+    alert("📝 Your thoughts have been saved safely!");
+    document.getElementById("journalArea").value = "";
+  } else {
+    alert("Write something first! 💬");
+  }
+}
+  </script>
+
+</body>
+</html>

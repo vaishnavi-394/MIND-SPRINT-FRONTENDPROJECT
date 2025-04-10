@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Creative Corner</title>
+  <style>
+    /* Reset margins and padding */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    /* Background video settings */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* This ensures the video covers the whole screen */
+      z-index: -1; /* Ensures the video is behind content */
+    }
+
+    /* Body style */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fdfbfb, #ebedee); /* Fallback gradient */
+      text-align: center;
+      height: 100%;
+    }
+
+    /* Main container style */
+    .main-container {
+      padding: 50px 20px;
+      z-index: 1; /* Ensures content is on top of the background */
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #f1eff9;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #ede0e0;
+      margin-bottom: 40px;
+    }
+
+    /* Card container settings */
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    /* Card styles */
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px 30px;
+      width: 220px;
+      text-decoration: none;
+      color: #6a5acd;
+      font-size: 1.1rem;
+      font-weight: bold;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .card:hover {
+      background: #f0f0ff;
+      transform: translateY(-5px);
+    }
+    .navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(90deg, #00c6ff, #f98df3);
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 114, 255, 0.3);
+  z-index: 999;
+  gap: 15px;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, background 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #e0f7fa;
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- Background Video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="videos/171850-846103451.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="navbar">
+    <a href="MS.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  
+
+  <!-- Main Content -->
+  <div class="main-container">
+    <h1>✨ Welcome to Your Creative Corner ✨</h1>
+    <p class="subtitle">Take a mindful pause, express yourself, and refresh your spirit.</p>
+
+    <div class="card-container">
+      <a href="doodlepad.html" class="card">🎨 Doodle Pad</a>
+      <a href="journal.html" class="card">📓 Gratitude Journal</a>
+      <a href="Affermation.html" class="card">💬 Positive Affirmations</a>
+      
+    </div>
+  </div>
+</body>
+</html>

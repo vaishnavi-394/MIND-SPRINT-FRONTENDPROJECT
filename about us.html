@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Mind Sprint</title>
+  <link rel="stylesheet" href="MS.css" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: rgba(255,255,255,0.1);
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 114, 255, 0.3);
+  z-index: 999;
+  gap: 15px;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, background 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #e0f7fa;
+}
+
+
+    .home-link {
+  font-size: 1.2rem;
+  color: #00ffe5;
+  text-decoration: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 11;
+  transition: color 0.3s ease;
+}
+
+.home-link:hover {
+  color: #ffffff;
+}
+    .content {
+      padding: 100px 20px 40px;
+      color: white;
+      text-align: center;
+    }
+
+    .heading {
+      font-size: 3rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00ffe5, #f1f1f9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(0, 255, 229, 0.6);
+      margin-bottom: 30px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .mission {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      font-size: 1.3rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(8px);
+      animation: fadeInUp 2s ease-in-out;
+    }
+
+    .team-section {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 40px;
+      animation: fadeInUp 2.5s ease-in-out;
+    }
+
+    .team-member {
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+      width: 250px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0, 255, 229, 0.3);
+    }
+
+    .team-member img {
+      width: 100px;
+      height: 130px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+
+    .testimonial-slider {
+      margin-top: 60px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(5px);
+      padding: 20px;
+      border-radius: 20px;
+      animation: fadeInUp 3s ease-in-out;
+    }
+
+    .testimonial {
+      font-style: italic;
+      color: #e0f7fa;
+    }
+
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="videos/206257_tiny.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="navbar">
+    <a href="MS.html">Home</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="content">
+    <div class="heading">About Mind Sprint</div>
+
+    <div class="mission">
+      At Mind Sprint, our mission is to provide a safe, interactive, and uplifting space where emotions are acknowledged and transformed into empowerment. We believe mental well-being is not a luxury—it's a necessity. <br><br>
+      Our vision is to create a digital sanctuary where people of all ages can access calming activities, personalized support, and a community that understands. From guided meditations to creative emotional outlets, we’re here to support every step of your inner journey.
+    </div>
+
+    <div class="heading">Meet the Team</div>
+    <div class="team-section">
+      <div class="team-member">
+        <img src="images/pragya.jpg" alt="Pragya Sharma" />
+        <h3>Pragya Sharma</h3>
+        <p>Project Coordinator</p>
+        <p>Pragya leads collaboration efforts and keeps the team aligned with deadlines and vision. Her organizational skills are unmatched.</p>
+      </div>
+      <div class="team-member">
+        <img src="images/puneet.jpg" alt="Puneet Varshney" />
+        <h3>Puneet Varshney</h3>
+        <p>Lead Developer</p>
+        <p>Puneet specializes in backend architecture and integrations, ensuring smooth operations behind the scenes.</p>
+      </div>
+      <div class="team-member">
+        <img src="images/shagun.jpg" alt="Shagun Chaudhary" />
+        <h3>Shagun Chaudhary</h3>
+        <p>Design and Strategy</p>
+        <p>Shagun shapes the visual direction and branding of the platform. Her eye for detail crafts our serene identity.</p>
+      </div>
+      <div class="team-member">
+        <img src="images/vaishnavi.jpg" alt="Vaishnavi Chakraborty" />
+        <h3>Vaishnavi Chakraborty</h3>
+        <p>Creative Lead</p>
+        <p>Vaishnavi is the visionary behind Mind Sprint. With a background in emotional psychology and digital design, she brings both heart and art to everything we build.</p>
+      </div>
+      <div class="team-member">
+        <img src="images/sanskriti.jpg" alt="Sanskriti Bajpayee" />
+        <h3>Sanskriti Bajpayee</h3>
+        <p>Research & Testing</p>
+        <p>Sanskriti contributed significantly in evaluating user experience and providing deep feedback on the features that matter.</p>
+      </div>
+      <div class="team-member">
+        <img src="images/bhawika.jpg" alt="Bhaika Jaitley" />
+        <h3>Bhaika Jaitley</h3>
+        <p>UI Review & Coordination</p>
+        <p>Bhaika worked on user interface observations and helped coordinate reviews during the crucial development phases.</p>
+      </div>
+      <div class="team-member">
+        <img src="images/aditya.jpg" alt="Aditya Varshney" />
+        <h3>Aditya Varshney</h3>
+        <p>QA & Documentation</p>
+        <p>Aditya assisted in maintaining proper documentation and conducted quality assurance testing for a bug-free experience.</p>
+      </div>
+    </div>
+
+    <div class="heading">What Our Users Say</div>
+    <div class="testimonial-slider">
+      <p class="testimonial">“Mind Sprint helped me calm down during one of the worst anxiety attacks I’ve had. The sound therapy section is a true lifesaver.” – Arnav R.”</p>
+      <p class="testimonial">“I never thought a website could make me feel so grounded. The flip cards are my favorite!” – Sneha K.”</p>
+      <p class="testimonial">“The user interface is not only beautiful, but also very easy to navigate. I use Mind Sprint daily to take small mental breaks.” – Priya M.”</p>
+    </div>
+  </div>
+</body>
+</html>

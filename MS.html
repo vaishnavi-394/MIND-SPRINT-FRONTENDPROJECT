@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mind Sprint - Emotion Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Global styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+    /* Background video */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+    /* Navbar styles */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 3;
+    }
+    .nav-title {
+      color: white;
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+    .dropdown {
+      position: relative;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .dropbtn {
+      background: linear-gradient(90deg, #75d6ff, #847eff);
+      color: white;
+      padding: 10px 20px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .dropbtn:hover {
+      background: linear-gradient(90deg, #6ec6ff, #6b6bff);
+      transform: translateY(-2px);
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: linear-gradient(180deg, #c1efff, #e1e4ff);
+      min-width: 200px;
+      border-radius: 12px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+      top: 120%;
+      right: 0;
+      z-index: 5;
+      overflow: hidden;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .dropdown-content a {
+      color: #222;
+      padding: 12px 18px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .dropdown-content a:hover {
+      background-color: #ffffffcc;
+      transform: scale(1.03);
+      font-weight: bold;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Top navbar with Home, About Us, Contact */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      padding: 6px 12px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 114, 255, 0.3);
+      z-index: 999;
+      gap: 15px;
+      flex-wrap: wrap;
+      max-width: 90%;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease, background 0.3s ease;
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+    .navbar a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #e0f7fa;
+    }
+    /* Subheading styling with gradient text */
+    .subheading {
+      text-align: center;
+      margin-top: 120px;
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #00c6ff, #edf0f5, #6b6bff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      margin-left: 10%;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    /* Emotion Card Gallery */
+    .emotion-gallery {
+      display: flex;
+      flex-wrap: nowrap; /* Single row scrolling */
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      /* Hide scrollbar in all browsers */
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .emotion-gallery::-webkit-scrollbar {
+      display: none;
+    }
+    /* Increase card size */
+    .emotion-card {
+      width: 220px;
+      height: 280px;
+      perspective: 1000px;
+      flex: 0 0 auto;
+    }
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    .emotion-card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 10px;
+      text-align: center;
+    }
+    .card-front {
+      background: #ffffffaa;
+    }
+    .card-back {
+      background: #a3cce2;
+      transform: rotateY(180deg);
+    }
+    /* Arrow Buttons */
+    .arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    .arrow-left {
+      left: 10px;
+    }
+    .arrow-right {
+      right: 10px;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .emotion-card {
+        width: 180px;
+        height: 230px;
+      }
+      .navbar a {
+        font-size: 0.85rem;
+        padding: 6px 8px;
+      }
+    }
+    /* CSS Styling for the Suggestion Container */
+.suggestions {
+  padding: 30px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.suggestions h2 {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.suggestions p {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.suggestions a {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #75d6ff, #847eff);
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.suggestions a:hover {
+  background: linear-gradient(90deg, #6ec6ff, #6b6bff);
+}
+
+  </style>
+</head>
+<body>
+  <!-- Background video -->
+  <video class="background-video" autoplay muted loop>
+    <source src="videos/206257_tiny.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Top Navbar -->
+  <div class="navbar">
+    <a href="MS.html">Home</a>
+    <a href="about us.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- Subheading -->
+  <div class="subheading">
+    It's okay to feel things!
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <nav>
+    <div class="nav-title">🧠 SPRINT</div>
+    <div class="dropdown">
+      <button class="dropbtn">🌈 Aware Plate</button>
+      <div class="dropdown-content">
+        <a href="mindfulness.html">🧘‍♀️ Mindfulness</a>
+        <a href="creative-corner.html">🎨 Creative Corner</a>
+        <a href="soundtherapy.html">🎵 Sound Therapy</a>
+        <a href="talk-it-out.html">🗣️ Talk It Out</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Arrow Buttons for Swiping -->
+  <button class="arrow-btn arrow-left" id="arrowLeft">&#8592;</button>
+  <button class="arrow-btn arrow-right" id="arrowRight">&#8594;</button>
+
+  <!-- Emotion Card Gallery -->
+  <div class="emotion-gallery" id="gallery">
+    <div class="emotion-card">
+      <div class="card-inner">
+        <div class="card-front">😊<br><span>Happy</span></div>
+        <div class="card-back">“Let your smile be the sunshine in someone else’s storm.”</div>
+      </div>
+    </div>
+    <div class="emotion-card">
+      <div class="card-inner">
+        <div class="card-front">😢<br><span>Sad</span></div>
+        <div class="card-back">“Even rain makes the flowers grow—embrace it.”</div>
+      </div>
+    </div>
+    <div class="emotion-card">
+      <div class="card-inner">
+        <div class="card-front">😡<br><span>Angry</span></div>
+        <div class="card-back">“Anger doesn’t solve. Stillness does.”</div>
+      </div>
+    </div>
+    <div class="emotion-card">
+      <div class="card-inner">
+        <div class="card-front">😨<br><span>Anxious</span></div>
+        <div class="card-back">“You’ve survived 100% of your anxious thoughts so far.”</div>
+      </div>
+    </div>
+    <div class="emotion-card">
+      <div class="card-inner">
+        <div class="card-front">🥱<br><span>Tired</span></div>
+        <div class="card-back">“Slow down—you’re not behind, you’re just human.”</div>
+      </div>
+    </div>
+    <div class="emotion-card">
+      <div class="card-inner">
+        <div class="card-front">😌<br><span>Calm</span></div>
+        <div class="card-back">“Peace is not found—it’s made, one breath at a time.”</div>
+      </div>
+    </div>
+  </div>
+  <!-- Suggestion Container -->
+<div class="suggestions" id="suggestions">
+  <h2>Explore Activities</h2>
+  <p>Click on an emotion card to get suggestions on activities.</p>
+</div>
+
+
+  <!-- JavaScript for Arrow Functionality -->
+  <script>
+    // Ensure the DOM content is fully loaded before accessing elements
+    document.addEventListener('DOMContentLoaded', () => {
+      const gallery = document.getElementById('gallery');
+      const arrowLeft = document.getElementById('arrowLeft');
+      const arrowRight = document.getElementById('arrowRight');
+
+      arrowLeft.addEventListener('click', () => {
+        gallery.scrollBy({ left: -300, behavior: 'smooth' });
+      });
+      arrowRight.addEventListener('click', () => {
+        gallery.scrollBy({ left: 300, behavior: 'smooth' });
+      });
+    });
+    // Function that returns suggestions based on the mood
+  function getSuggestions(mood) {
+    let title = "";
+    let text = "";
+    let links = "";
+    
+    switch (mood) {
+      case 'happy':
+        title = "You're Feeling Happy!";
+        text = "Keep the energy going with these fun activities:";
+        links = `
+          <a href="creative-corner.html">Creative Corner</a>
+          <a href="mindfulness.html">Mindfulness</a>
+        `;
+        break;
+      case 'sad':
+        title = "You're Feeling Sad";
+        text = "Here are some calm suggestions to lift your spirits:";
+        links = `
+          <a href="mindfulness.html">Mindfulness Meditation</a>
+          <a href="creative-corner.html">Express with Art</a>
+        `;
+        break;
+      case 'angry':
+        title = "You're Feeling Angry";
+        text = "Try these activities to help channel and calm your energy:";
+        links = `
+          <a href="mindfulness.html">Breathing Exercises</a>
+          <a href="talk-it-out.html">Talk It Out</a>
+        `;
+        break;
+      case 'anxious':
+        title = "You're Feeling Anxious";
+        text = "These practices might help you regain your calm:";
+        links = `
+          <a href="mindfulness.html">Guided Meditation</a>
+          <a href="soundtherapy.html">Sound Therapy</a>
+        `;
+        break;
+      case 'tired':
+        title = "You're Feeling Tired";
+        text = "Consider these suggestions to unwind and recharge:";
+        links = `
+          <a href="mindfulness.html">Relaxation Exercises</a>
+          <a href="talk-it-out.html">Talk It Out</a>
+        `;
+        break;
+      case 'calm':
+        title = "You're Feeling Calm";
+        text = "Keep up the tranquility with these activities:";
+        links = `
+          <a href="creative-corner.html">Get Creative</a>
+          <a href="mindfulness.html">Mindfulness Practices</a>
+        `;
+        break;
+      default:
+        title = "Explore Activities";
+        text = "Click on an emotion card to get activity suggestions.";
+    }
+    
+    return `
+      <h2>${title}</h2>
+      <p>${text}</p>
+      <div>${links}</div>
+    `;
+  }
+  
+  // Add click event listener to each emotion card that has a 'data-mood' attribute
+  const cards = document.querySelectorAll('.emotion-card');
+  const suggestionsContainer = document.getElementById('suggestions');
+  
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const mood = card.getAttribute('data-mood');
+      suggestionsContainer.innerHTML = getSuggestions(mood);
+    });
+  });
+  
+  </script>
+</body>
+</html>

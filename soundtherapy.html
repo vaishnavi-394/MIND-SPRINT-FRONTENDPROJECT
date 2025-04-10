@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sound Therapy</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Video Background Styling */
+    #bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.6);
+}
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 114, 255, 0.3);
+  z-index: 999;
+  gap: 15px;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, background 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #e0f7fa;
+}
+
+
+    h1 {
+      text-align: center;
+      margin-top: 90px;
+      font-size: 3rem;
+    }
+
+    .emotion-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+
+    .emotion-buttons button {
+      padding: 20px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      background: #fff;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+
+    .emotion-buttons button:hover {
+      background: #333;
+      color: #fff;
+    }
+
+    .player-section {
+      margin-top: 40px;
+      text-align: center;
+      display: none;
+    }
+
+    .audio-list {
+      margin-top: 20px;
+    }
+
+    audio {
+      display: block;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Video Background -->
+  <video autoplay muted loop id="bg-video">
+    <source src="videos/175594-853887904.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="navbar">
+    <a href="MS.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  
+
+  <h1>🎧 Sound Therapy Zone🎧 </h1>
+
+  <div class="emotion-buttons">
+    <button onclick="showPlayer('calm')">😌 Calm</button>
+    <button onclick="showPlayer('happy')">😊 Happy</button>
+    <button onclick="showPlayer('energize')">⚡ Energize</button>
+  </div>
+
+  <div class="player-section" id="calm">
+    <h2>😌 Relax and Unwind</h2>
+    <div class="audio-list">
+      <audio controls src="Songs/song 1.mp3"></audio>
+      <audio controls src="Songs/song4.mp3"></audio>
+      <audio controls src="Songs/song7.mp3"></audio>
+    </div>
+  </div>
+
+  <div class="player-section" id="happy">
+    <h2>😊 Feel the Joy</h2>
+    <div class="audio-list">
+      <audio controls src="Songs/song2.mp3"></audio>
+      <audio controls src="Songs/song6.mp3"></audio>
+      <audio controls src="Songs/song9.mp3"></audio>
+    </div>
+  </div>
+
+  <div class="player-section" id="energize">
+    <h2>⚡ Boost Your Mood</h2>
+    <div class="audio-list">
+      <audio controls src="Songs/song3.mp3"></audio>
+      <audio controls src="Songs/song5.mp3"></audio>
+      <audio controls src="Songs/song8.mp3"></audio>
+    </div>
+  </div>
+
+  <script>
+    function showPlayer(emotion) {
+      document.querySelectorAll('.player-section').forEach(section => {
+        section.style.display = 'none';
+      });
+      document.getElementById(emotion).style.display = 'block';
+    }
+  </script>
+</body>
+</html>

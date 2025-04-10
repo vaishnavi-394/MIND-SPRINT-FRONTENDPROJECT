@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meditation & Yoga Timer</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+      position: relative;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    video.bg-video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: auto;
+      width: auto;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    h1 {
+      margin-top: 20px;
+      background-color: rgba(47, 175, 234, 0.8);
+      padding: 10px 20px;
+      border-radius: 12px;
+      z-index: 1;
+      font-size: 2.5rem;
+      color: black;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: aliceblue;
+      z-index: 2;
+      margin-top: 40px;
+    }
+
+    .timer {
+      font-size: 2.5rem;
+      margin: 20px 0;
+      background-color: rgba(166, 223, 244, 0.7);
+      padding: 15px 25px;
+      border-radius: 12px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .controls button {
+      padding: 12px 24px;
+      border: none;
+      background-color: #07435f;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .controls button:hover {
+      background-color: #123a44;
+    }
+
+    .yoga-section {
+      width: 100%;
+      text-align: center;
+    }
+
+    .aasans {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .aasan {
+      background: rgba(145, 207, 240, 0.9);
+      padding: 20px;
+      border-radius: 20px;
+      width: 280px;
+      max-width: 90vw;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .aasan:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .aasan-title {
+      font-weight: bold;
+      font-size: 1.4rem;
+      margin: 10px 0 5px;
+    }
+
+    .aasan img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .aasan a {
+      display: block;
+      margin-top: 10px;
+      color: #0077cc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .aasan a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .timer {
+        font-size: 2rem;
+        padding: 12px 20px;
+      }
+      .controls button {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .aasan img {
+        height: 160px;
+      }
+    }
+    .navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  background: linear-gradient(90deg, #00c6ff, #f98df3);
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 114, 255, 0.3);
+  z-index: 999;
+  gap: 15px;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, background 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #e0f7fa;
+}
+  </style>
+</head>
+<body>
+  <video autoplay muted loop class="bg-video">
+    <source src="videos/219499_medium.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <h1>Meditation Timer</h1>
+  <div class="timer" id="timer">05:00</div>
+  <div class="controls">
+    <button onclick="setDuration(300)">5 Minutes</button>
+    <button onclick="setDuration(600)">10 Minutes</button>
+    <button onclick="setDuration(900)">15 Minutes</button>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetTimer()">Reset</button>
+  </div>
+
+  <div class="yoga-section">
+    <h2 style="background-color: rgba(4, 36, 58, 0.7); padding: 10px 20px; border-radius: 12px;">Try These Yoga Aasans</h2>
+    <div class="aasans">
+      <div class="aasan">
+        <img src="images/balasana.jpg" alt="Balasana">
+        <div class="aasan-title">Balasana</div>
+        <div>(Child's Pose)</div>
+        <a href="https://www.youtube.com/shorts/1o37AxKYO9A" target="_blank">Watch Video</a>
+      </div>
+      <div class="aasan">
+        <img src="images/sukhasana.jpg" alt="Sukhasana">
+        <div class="aasan-title">Sukhasana</div>
+        <div>(Easy Pose)</div>
+        <a href="https://www.youtube.com/shorts/zYaWQcEP_gk" target="_blank">Watch Video</a>
+      </div>
+      <div class="aasan">
+        <img src="images/vrikshasana.jpg" alt="Vrikshasana">
+        <div class="aasan-title">Vrikshasana</div>
+        <div>(Tree Pose)</div>
+        <a href="https://www.youtube.com/shorts/eMr9EZEVSo8" target="_blank">Watch Video</a>
+      </div>
+      <div class="aasan">
+        <img src="images/shavasana.jpg" alt="Shavasana">
+        <div class="aasan-title">Shavasana</div>
+        <div>(Corpse Pose)</div>
+        <a href="https://www.youtube.com/shorts/0RPINJdNgpw" target="_blank">Watch Video</a>
+      </div>
+    </div>
+  </div>
+  <div class="navbar">
+    <a href="MS.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  
+
+  <script>
+    let timer;
+    let duration = 300; // Default to 5 minutes
+    let remaining = duration;
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    function updateDisplay() {
+      document.getElementById("timer").textContent = formatTime(remaining);
+    }
+
+    function startTimer() {
+      if (timer) return;
+      timer = setInterval(() => {
+        if (remaining > 0) {
+          remaining--;
+          updateDisplay();
+        } else {
+          clearInterval(timer);
+          timer = null;
+          alert("Great job! Your meditation session is complete.");
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      timer = null;
+      remaining = duration;
+      updateDisplay();
+    }
+
+    function setDuration(sec) {
+      duration = sec;
+      remaining = sec;
+      updateDisplay();
+      stopTimer();
+    }
+
+    updateDisplay();
+  </script>
+</body>
+</html>

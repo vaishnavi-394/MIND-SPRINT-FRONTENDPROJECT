@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us - Mind Sprint</title>
+  <link rel="stylesheet" href="contact.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #0ba5e786);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
+  
+  .contact-container {
+    background: rgba(64, 162, 223, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+  }
+  
+  .contact-container h1 {
+    color: #6200ea;
+    margin-bottom: 10px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .contact-form button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .contact-form button:hover {
+    background: linear-gradient(90deg, #0072ff, #00c6ff);
+  }
+  
+  .social-links {
+    margin-top: 20px;
+  }
+  
+  .social-links a img {
+    width: 32px;
+    margin: 0 10px;
+    transition: transform 0.3s;
+  }
+  
+  .social-links a img:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Chatbot Style */
+  .chatbot-bubble {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0072ff;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 114, 255, 0.4);
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .chatbot-window {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.chat-header {
+  background: #0072ff;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-body {
+  padding: 10px;
+  height: 200px;
+  overflow-y: auto;
+  background: #f9f9f9;
+  font-size: 0.9rem;
+}
+
+.chat-body .bot-message,
+.chat-body .user-message {
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  max-width: 80%;
+}
+
+.bot-message {
+  background: #e3f2fd;
+  align-self: flex-start;
+}
+
+.user-message {
+  background: #d1c4e9;
+  align-self: flex-end;
+  text-align: right;
+}
+
+#chatForm {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+#chatForm input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 0;
+}
+
+#chatForm button {
+  padding: 10px;
+  background: #0072ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 114, 255, 0.3);
+  z-index: 999;
+  gap: 15px;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, background 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.navbar a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #e0f7fa;
+}
+
+  
+</style>  
+<body>
+    <div class="navbar">
+        <a href="MS.html">Home</a>
+        <a href="about us.html">About-Us</a>
+      </div>
+
+  <div class="contact-container">
+    <h1>💬 Let's Connect!</h1>
+    <p>Have something on your mind? We’re all ears 👂</p>
+
+    <form class="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="What's on your mind?" required></textarea>
+      <button type="submit">Send Message 🚀</button>
+    </form>
+
+    <!-- Optional: Social Media -->
+    <div class="social-links">
+      <a href="https://www.instagram.com/pragyaashrma?igsh=eTI0ODV0emxma284"><img src="images/instagram.png" alt="Instagram"></a>
+      <a href="https://www.linkedin.com/in/vaishnavi-chakraborty-85b949292/"><img src="images/linkedin.png" alt="LinkedIn"></a>
+      <a href="https://github.com/vaishnavi-394"><img src="images/github.png" alt="GitHub"></a>
+    </div>
+  </div>
+  <div class="chatbot-bubble">💬</div>
+
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chat-header">MindSprint Bot 🤖 <span id="closeChat">&times;</span></div>
+    <div class="chat-body" id="chatBody">
+      <div class="bot-message">Hey there! How can I help you today? 💡</div>
+    </div>
+    <form id="chatForm">
+      <input type="text" id="userInput" placeholder="Type a message..." required />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+  
+  <script>
+    const chatbotBubble = document.querySelector(".chatbot-bubble");
+    const chatbotWindow = document.getElementById("chatbotWindow");
+    const closeChat = document.getElementById("closeChat");
+    const chatForm = document.getElementById("chatForm");
+    const chatBody = document.getElementById("chatBody");
+    const userInput = document.getElementById("userInput");
+  
+    chatbotBubble.addEventListener("click", () => {
+      chatbotWindow.style.display = "flex";
+    });
+  
+    closeChat.addEventListener("click", () => {
+      chatbotWindow.style.display = "none";
+    });
+  
+    chatForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const userMsg = userInput.value.trim();
+      if (userMsg !== "") {
+        chatBody.innerHTML += `<div class="user-message">${userMsg}</div>`;
+  
+        // Fake response after short delay
+        setTimeout(() => {
+          const response = getBotReply(userMsg);
+          chatBody.innerHTML += `<div class="bot-message">${response}</div>`;
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 600);
+        userInput.value = "";
+      }
+    });
+  
+    function getBotReply(msg) {
+      const message = msg.toLowerCase();
+      if (message.includes("hello") || message.includes("hi")) return "Hey hey! 👋";
+      if (message.includes("help")) return "I gotchu! Tell me what you're stuck on.";
+      if (message.includes("contact")) return "You can drop your message in the form above ☝️";
+      return "Hmm... I’m still learning. Can you rephrase that? 🤔";
+    }
+  </script>
+  
+</body>
+</html>
